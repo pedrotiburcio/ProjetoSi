@@ -15,19 +15,22 @@ public class Disciplina {
 		this.preRequisitos = preRequisitos;
 	}
 	
+	//INFORMATION EXPERT: A disciplina possui (é o especialista em) seu nome.
 	public String getNome(){
 		return this.nome;
 	}
 	
+	//INFORMATION EXPERT: A disciplina possui (é o especialista em) seus créditos.
 	public int getCreditos(){
 		return this.creditos;
 	}
 
-	//INFORMATION EXPERT: A disciplina possui seus pré-requisitos.
+	//INFORMATION EXPERT: A disciplina possui (é o especialista em) seus pré-requisitos.
 	public Disciplina[] getPreRequisitos(){
 		return this.preRequisitos;
 	}
 	
+	//INFORMATION EXPERT: A disciplina é o especialista nos seus pré-requisitos.
 	public String preRequisitos(){
 		String preRequisitos = "";
 		for (int i = 0; i < this.preRequisitos.length; i++){

@@ -11,7 +11,7 @@ public class GradeCurricular {
 	metodos, plp, logica, oac, loac, es, si1, atal, infosoc, direito, comp, redes, bd1, si2, labEs, so, interRedes, LabInterRedes, bd2, ia, softNum, sistemasDiscretos, projeto1, projeto2,
 	adm, sociologia, economia, futsal, basq, calc3, eqDif, ingles, didatica1, didatica2, sistemasDist, segurancaRedes, realidadeVirt, empreendorismo;
 	
-	
+	//CREATOR: A grade curricular cria a lista contendo todas as disciplinas.
 	public GradeCurricular() {
 		listaDisciplinas = new Disciplina[]{
 				calc1 = new Disciplina("Cálculo I", 4, new Disciplina[0]),
@@ -77,7 +77,8 @@ public class GradeCurricular {
 
 			disciplinasPrimeiroPeriodo = new ArrayList<Disciplina>(); 
 		}
-
+		
+		//INFORMATION EXPERT: Aqui a pesquisa é relativa a qualquer local, ou seja, em qualquer período.
 		public Disciplina pesquisaDisciplina(String nomeDaDisciplina) throws Exception{
 			for (int i = 0; i < this.getQuantidadeDisciplinas(); i++) {
 				if (this.getListaDeDisciplinas()[i].getNome().equalsIgnoreCase(nomeDaDisciplina)) {
@@ -87,6 +88,7 @@ public class GradeCurricular {
 			throw new Exception("A disciplina procurada não existe.");
 		}
 		
+		//INFORMATION EXPERT: Informação necessária pra saber se a disciplina está presente em algum período.
 		public boolean contains(Disciplina disciplina) {
 			boolean resp = false;
 				for (int i = 0; i < this.getListaDeDisciplinas().length; i++) {
@@ -97,14 +99,17 @@ public class GradeCurricular {
 			return resp;
 		}
 		
+		//INFORMATION EXPERT: A grade é a especialista na quantidade total de disciplinas.
 		public int getQuantidadeDisciplinas(){
 			return this.listaDisciplinas.length;
 		}
 		
+		//INFORMATION EXPERT: A grade é a especialista na lista de disciplinas.
 		public Disciplina[] getListaDeDisciplinas() {
 			return this.listaDisciplinas;
 		}
 		
+		//CREATOR: A grade possui os dados para a criação do primeiro período.
 		public List<Disciplina> criaOPrimeiroPeriodo() {
 			disciplinasPrimeiroPeriodo.add(calc1);
 			disciplinasPrimeiroPeriodo.add(prog1);

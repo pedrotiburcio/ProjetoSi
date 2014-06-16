@@ -15,11 +15,14 @@ public class Alocador {
     private GradeCurricular grade;
     private Periodo primeiroPeriodo;
     
+    
+    //CONTROLLER: É o responsável por lidar com um evento de uma interface de entrada no sistema.
     public Alocador(GradeCurricular grade) {
     	this.grade = grade;
     	periodos = new ArrayList<Periodo>();
     	primeiroPeriodo = new Periodo();
 	}
+    
     
     public void adicionaPeriodo() throws Exception{
 		if (this.quantidadeDePeriodos() < 10)
