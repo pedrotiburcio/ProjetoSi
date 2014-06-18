@@ -1,0 +1,11 @@
+run
+play eclipse
+cd ..
+exit
+run
+RUN
+run
+RUN
+run
+compile
+run

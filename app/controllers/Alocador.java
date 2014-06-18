@@ -31,6 +31,7 @@ public class Alocador {
 			throw new Exception("Não pode adicionar mais períodos.");
 	}
     
+    
     public int minimoDeCreditos() {
 		return this.MINIMO_DE_CREDITOS;
 	}
@@ -97,9 +98,9 @@ public class Alocador {
 				+ disciplina.getCreditos() <= maximoDeCreditos())) {
 			this.periodo(indicePeriodo).adicionaDisciplina(disciplina);
 		} else{
-			if(indicePeriodo == 0)throw new Exception("Nao pode adicionar disciplinas no primeiro periodo.");
-			if(this.jaFoiAdicionada(disciplina))throw new Exception("Disciplina ja esta alocada");
-			if(!verificaPreRequisitos) throw new Exception("Os pre Requisitos nao foram alocados.");
+			if(indicePeriodo == 0)throw new Exception("Não é possível adicionar disciplinas no primeiro periodo.");
+			if(this.jaFoiAdicionada(disciplina))throw new Exception("Disciplina já está alocada");
+			if(!verificaPreRequisitos) throw new Exception("Os pré-requisitos não foram alocados.");
 			if(this.periodo(indicePeriodo).getTotalDeCreditos() + disciplina.getCreditos() > maximoDeCreditos())throw new Exception("Vai ultrapassar o maximo de creditos.");
 		}
 			

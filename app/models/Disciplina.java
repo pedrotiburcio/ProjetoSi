@@ -57,8 +57,7 @@ public class Disciplina {
 
 	@Override
 	public String toString() {
-		return "Disciplina [nome=" + nome + ", creditos=" + creditos
-				+ ", preRequisitos=" + Arrays.toString(preRequisitos) + "]";
+		return getNome() + "; ";
 	}
 	
 }

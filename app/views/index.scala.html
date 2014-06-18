@@ -2,7 +2,7 @@
 
 @import helper._ 
 @main("Grade Curricular - CC") {
-	<font color="#CCFFFF"> 
+	<font color="#848400"> 
 		<head>
 			<meta charset="utf-8">
 			<link rel="stylesheet" href="../public/stylesheets/main.css">
@@ -14,10 +14,10 @@
 				<br>
 				<div class="adicionarUmPeriodo">
 					@form(routes.Application.criaPeriodo()) {
-						<button type="submit" class="btn btn-large btn-primary" type="button">Adicionar Período</button><br>
+						<button type="submit" class="btn btn-large btn-primary" type="button">Novo Período</button><br>
 					}
 				</div> 
-				@if(sistemaPlanejamento.getPeriodos.size() > 1) {
+				@if(alocador.getPeriodos.size() > 1) {
 					<!--janela de alerta - limite dos periodos-->
 						@if(message != ""){
 							<script language="JavaScript" type="text/javascript">
@@ -26,8 +26,8 @@
 						}  
 					
 					<div class= "adicionarUmaDisciplina">
-						@form(routes.Application.adicionaDisciplinaNoPeriodo(){
-							@if(grade.getPeriodos.size() > 1) {
+						@form(routes.Application.adicionaDisciplinaNoPeriodo()){
+							@if(alocador.getPeriodos.size() > 1) {
 				        		 <nome>Adicionar Disciplina
 				            		    <select class="selectpicker" data-live-search="true" name="inputNameDisc" >
 
@@ -54,7 +54,7 @@
 					@form(routes.Application.removeDisciplinaDoPeriodo()){
 						@if(alocador.getPeriodos.size() > 1) {
 		    				<nome>Remover disciplina <select class="selectpicker" data-live-search="true" name="inputNameDisc" >
-		            			@for(disciplina <- alocador.getCurriculo().getDisciplinas()) {
+		            			@for(disciplina <- alocador.getGradeCurricular().getListaDeDisciplinas()) {
 		            				@if(alocador.jaFoiAdicionada(disciplina) && !alocador.getPeriodos().get(0).getDisciplinas().contains(disciplina)){
 		        	        			 </nome><option value="@disciplina.getNome()" name="inputNameDisc" >@disciplina.getNome()</option>
 			             			}
@@ -69,23 +69,27 @@
 					<br><section class="planejamento">
 				<!-- tabela com as disciplinas e o calculo do total de creditos de qualquer periodo-->
 				<table>
-					@for(periodo <- sistemaPlanejamento.getPeriodos()){
-						<th class="titulo">@(sistemaPlanejamento.getPeriodos.indexOf(periodo)+1)º PERÍODO </th>
-						@for(disciplina <- sistemaPlanejamento.getDisciplinasDadoPeriodo(sistemaPlanejamento.getPeriodos.indexOf(periodo))){
-							<tr><td class="disciplina">@disciplina.getNomeDaDisciplina()</tr>
+					@for(periodo <- alocador.getPeriodos()){
+						<center>
+						<th class="titulo">@(alocador.getPeriodos.indexOf(periodo)+1)º PERÍODO </th>
+						@for(disciplina <- alocador.getDisciplinasDadoPeriodo(alocador.getPeriodos.indexOf(periodo))){
+							<tr><td class="disciplina">@disciplina.getNome()</tr>
+							
 						} 
 						<tr><td class="numero">Total de Créditos: @periodo.getTotalDeCreditos()</tr></td>
+						</center>
 						@if(alocador.getCreditosDeUmPeriodo(alocador.getPeriodos.indexOf(periodo)) < alocador.minimoDeCreditos()){
-							<tr><td class="numero">Os creditos deste período estão abaixo do mínimo.</tr></td>
+							<tr><td class="numero">Os créditos totais do período estão abaixo do mínimo.</tr></td>
 						}
 				 	}   
-			</section> 
+			</section>
+			
 			<footer class="curriculo">	
 				<!-- tabela de todas as disciplinas, seus creditos e pre-requisitos -->
 				<table class="table table-bordered">
 				<TH> Nome da disciplina</TH><TH> Créditos </TH> <TH> Pré-Requisitos</TH>
-				@for(disciplina <- alocador.getCurriculo().getDisciplinas()){	
-					<TR><TD>@disciplina.getNome()</td><td> @disciplina.getCreditos()</td><td>@disciplina.getpreRequisitos()</TD></TR> 
+				@for(disciplina <- alocador.getGradeCurricular().getListaDeDisciplinas()){	
+					<TR><TD>@disciplina.getNome()</td><td> @disciplina.getCreditos()</td><td>@disciplina.getPreRequisitos()</TD></TR> 
 
 				}       
 		   		</table>
